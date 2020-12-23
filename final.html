@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<header>
+	<title>///</title>
+
+	<style type="text/css">
+		div{
+			color: #000;
+			margin: 20px;
+			display: block;
+			font-size: 5em;
+			padding: 10px;
+		}
+
+		div:hover{
+			cursor: pointer;
+		}
+	</style>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		var alphabet = ["BFOSIRTYUDVB", "ABDPWAFHCZF", "ABGUGPDIBHUE", "BFUEOAPFLEINGV"];
+
+		var letters;
+		var correctLetter = "EDLERAXGLAE";
+		var correctIndex = Math.floor(Math.random() * 2) + 1;
+
+		function isCorrectLetterOrInLetters(element){
+			if(element == correctLetter){
+				return true;
+			}
+			if($.inArray(element, letters)){
+				return true;
+			}
+		}
+
+		for(var i = 0; i < 4; i++){
+			var tag = document.createElement('div');
+			var letter;
+
+			if(i == correctIndex){
+				letter = correctLetter;
+			}
+			else{
+				var index = Math.floor(Math.random() * alphabet.length);
+				while(index == alphabet.findIndex(isCorrectLetterOrInLetters)){
+					index = Math.floor(Math.random() * alphabet.length);
+				}
+				letter = alphabet[index];
+			}
+
+			var linkText = document.createTextNode(letter);
+			tag.appendChild(linkText);
+			tag.id = letter;
+			document.body.appendChild(tag);
+
+		}
+
+		$("div").each(function(index){
+			if(index == correctIndex){
+				$(this).click(function(){
+					window.location.assign("victory.html");
+				});
+			}
+			else{
+				$(this).click(function(){
+					window.location.assign("one.html");
+				})
+			}
+		})
+	</script>
+
+	</header>
+
+	<body>
+		<div class="question">Which of these contains all of the correct letters?</div>
+	</body>
+</html>

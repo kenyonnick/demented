@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<header>
+	<title>//</title>
+
+	<link rel="stylesheet" type="text/css" href="dementedstyle.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'o', 'p', 'q', 'r', 's', 't', 'u','v','w', 'y','z'];
+
+		var letters;
+		var correctLetter = 'x';
+		var correctIndex = Math.floor(Math.random() * 4) + 1;
+
+		function isCorrectLetterOrInLetters(element){
+			if(element == correctLetter){
+				return true;
+			}
+			if($.inArray(element, letters)){
+				return true;
+			}
+		}
+
+		for(var i = 0; i < 5; i++){
+			var tag = document.createElement('div');
+			var letter;
+
+			if(i == correctIndex){
+				letter = correctLetter;
+			}
+			else{
+				var index = Math.floor(Math.random() * alphabet.length);
+				while(index == alphabet.findIndex(isCorrectLetterOrInLetters)){
+					index = Math.floor(Math.random() * alphabet.length);
+				}
+				letter = alphabet[index];
+			}
+
+			var linkText = document.createTextNode(letter);
+			tag.appendChild(linkText);
+			tag.id = letter;
+			document.body.appendChild(tag);
+
+		}
+
+		$("div").each(function(index){
+			if(index == correctIndex){
+				$(this).click(function(){
+					window.location.assign("eight.html");
+				});
+			}
+			else{
+				$(this).click(function(){
+					window.location.assign("one.html");
+				})
+			}
+		})
+	</script>
+
+	</header>
+
+	<body>
+		<h1>::...</h1>
+	</body>
+</html>
